@@ -1,0 +1,29 @@
+{% url 'login' as login %}
+{% url 'register' as register %}
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container-fluid">
+    <a href="#" class="navbar-brand">Domotech</a>
+    <!-- Menu hamburguesa -->
+    <button type="button" name="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div id="navb" class="collapse navbar-collapse flex-row-reverse">
+        <ul class="nav navbar-nav ml-right">
+            {% if user.is_authenticated %}
+            <li class="navbar-item">
+                <a href="{% url 'logout' %}" class="nav-link"> <span class="fas fa-sign-in-alt"></span> Logout</a>
+            </li>
+            {% else %}
+            <li class="navbar-item {% if request.path == login %}active{% endif %}">
+                <a href="{{ login }}" class="nav-link"> <span class="fas fa-user"></span> Login</a>
+            </li>
+            <li class="navbar-item {% if request.path == register %}active{% endif %}">
+                <a href="{{ register }}" class="nav-link"> <span class="fas fa-cash-register"></span> Registro</a>
+            </li>
+            {% endif %}
+        </ul>
+
+    </div>
+</div>
+</nav>
